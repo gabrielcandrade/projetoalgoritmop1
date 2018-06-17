@@ -3,7 +3,9 @@
 # Aluno: Gabriel de Carvalho Andrade - Matrícula: 1810021814
 # Curso: Ciências da Computação - 1º Período
 
-# Aplicação ja preparada para rodar diretamente no ambiente do Windows para melhor correção do exercício.
+# Aplicação já preparada para rodar diretamente no ambiente do Windows para melhor correção do exercício.
+
+# Função de tratamento do arquivo.
 
 from reportlab.pdfgen import canvas
 import smtplib
@@ -11,8 +13,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-
-# Função de tratamento do arquivo.
 
 def trataTextos(diretorio):
 	# Trata o diretorio de entrada para pegar apenas o arquivo .txt
@@ -49,8 +49,6 @@ def trataTextos(diretorio):
 	print()
 	return dicionario
 
-# Função de conversão de um dicionario para um arquivo .pdf
-
 def colocarEmPDF (dicionario):
 	# Recebe o dicionário
 	convidados = dicionario
@@ -77,8 +75,6 @@ def colocarEmPDF (dicionario):
 	print ()
 	print ("O arquivo .pdf se encontra no mesmo lugar que o arquivo .txt")
 
-# Função de enviar e-mail automaticamente.
-
 def enviarEmail():
 	fromaddr = "gca.evl@gmail.com"
 	toaddr = "app.p1.unipe@gmail.com"
@@ -88,15 +84,15 @@ def enviarEmail():
 	msg['From'] = fromaddr
 	msg['To'] = toaddr
 
-	#Assunto
+	# Assunto
 	msg['Subject'] = "Contatos - Gabriel de Carvalho Andrade"
 
-	#Corpo do texto 
+	# Corpo do texto 
 	body = "Segue os contatos em anexo!"
 
 	msg.attach(MIMEText(body, 'plain'))
 
-	#Anexo 
+	# Anexo 
 	filename = "convidados.pdf"
 	attachment = open(filename, "rb")
 
@@ -116,7 +112,7 @@ def enviarEmail():
 	print ("E-mail enviado com sucesso!")
 
 	server.quit()
-
+	
 # Interface do sistema
 
 print ('''
@@ -139,23 +135,14 @@ print ('''
 	#####################################################
 ''')
 
-# Primeira parte do exercício.
+# Main
 
 print ("Digite o caminho do arquivo. Não esqueça que sua extensão deve ser .txt:\n")
 caminho = input("")
 
-print ("Parte 1 do exercício!")
-print ()
-print (trataTextos(caminho))
+print ('''
+Parte 3 do exercício!''')
 
-# Segunda parte do exercício.
-
-print ("Parte 2 do exercício!")
-print ()
-colocarEmPDF(trataTextos(caminho))
-
-# Terceira parte do exercício.
-
-print ("Parte 3 do exercício!")
-print ()
 enviarEmail()
+
+input()
